@@ -6,29 +6,30 @@
 <title>Ernest Syu | Violinist</title>
 
 <style>
-body {
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
     font-family: Helvetica, Arial, sans-serif;
-    background-color: #ffffff;
-    color: #222;
 }
 
 /* ===== Navigation ===== */
 nav {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    background: rgba(0,0,0,0.6);
-    padding: 15px 0;
-    text-align: center;
-    z-index: 1000;
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    z-index: 10;
 }
 
 nav a {
-    color: white;
+    color: white !important;
     text-decoration: none;
-    margin: 0 20px;
-    font-size: 16px;
+    margin-left: 25px;
+    font-size: 15px;
     letter-spacing: 1px;
 }
 
@@ -36,60 +37,50 @@ nav a:hover {
     opacity: 0.7;
 }
 
-/* ===== Hero Section ===== */
+/* ===== Hero ===== */
 .hero {
     height: 100vh;
+    width: 100%;
     background-image: url('hero.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: 45% center; /* 桌機微左 */
     display: flex;
-    align-items: center;
     justify-content: center;
-    text-align: center;
-    padding: 20px;
+    align-items: center;
 }
 
 .hero-text {
-    color: white;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+    text-align: center;
+    color: white !important;
+    text-shadow: 0 0 20px rgba(0,0,0,0.8);
 }
 
 .hero-text h1 {
-    font-size: 48px;
-    margin: 0;
-    letter-spacing: 2px;
+    font-size: 52px;
+    font-weight: 500;
+    letter-spacing: 3px;
 }
 
 .hero-text p {
     font-size: 20px;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
-/* ===== Section General ===== */
-section {
-    padding: 80px 20px;
-    max-width: 900px;
-    margin: auto;
-}
-
-h2 {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-/* ===== Footer ===== */
-footer {
-    text-align: center;
-    padding: 40px;
-    font-size: 14px;
-    background-color: #f5f5f5;
-}
-
-/* ===== Mobile Adjustments ===== */
+/* ===== Mobile ===== */
 @media (max-width: 768px) {
 
+    nav {
+        right: 20px;
+        top: 20px;
+    }
+
+    nav a {
+        margin-left: 15px;
+        font-size: 13px;
+    }
+
     .hero {
-        background-position: 40% center; /* 折中位置 */
+        background-position: 42% center; /* 手機折中，不會太左 */
     }
 
     .hero-text h1 {
@@ -99,80 +90,26 @@ footer {
     .hero-text p {
         font-size: 16px;
     }
-
-    nav a {
-        margin: 0 10px;
-        font-size: 14px;
-    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- Navigation -->
 <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#concerts">Concerts</a>
-    <a href="#media">Media</a>
-    <a href="#contact">Contact</a>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="concerts.html">Concerts</a>
+    <a href="media.html">Media</a>
+    <a href="contact.html">Contact</a>
 </nav>
 
-<!-- Hero -->
-<div class="hero" id="home">
+<div class="hero">
     <div class="hero-text">
         <h1>Ernest Syu</h1>
         <p>Violinist</p>
     </div>
 </div>
-
-<!-- About -->
-<section id="about">
-    <h2>About</h2>
-    <p>
-        Ernest (Cheng-Yi) Syu is a violinist currently studying at the Yong Siew Toh Conservatory of Music, National University of Singapore, under Professor Qian Zhou. He regularly freelances with the Singapore Symphony Orchestra.
-    </p>
-    <p>
-        Ernest is the First Prize winner of the 2025 Singapore National Piano and Violin Competition (Artist Category) and winner of the YST Conservatory Concerto Competition. He has performed Tchaikovsky Violin Concerto with the YST Conservatory Orchestra and has appeared internationally in festivals across Europe and Asia.
-    </p>
-</section>
-
-<!-- Concerts -->
-<section id="concerts">
-    <h2>Concerts</h2>
-    <p>
-        Upcoming concerts and appearances will be updated soon.
-    </p>
-</section>
-
-<!-- Media -->
-<section id="media">
-    <h2>Media</h2>
-    <p>
-        <strong>Tchaikovsky Violin Concerto</strong><br>
-        <a href="https://www.youtube.com/live/p92YuvO2wJ0?si=ngWIAOd7PJRi-3z4&t=6016" target="_blank">
-            Watch Performance
-        </a>
-    </p>
-
-    <p>
-        <strong>Bach: Sonata No.3 BWV 1005</strong><br>
-        <a href="https://youtu.be/5LrhNGogXBE?si=fjWXh7fzKjbfgdB1" target="_blank">
-            Watch Performance
-        </a>
-    </p>
-</section>
-
-<!-- Contact -->
-<section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:ernestsyu@gmail.com">ernestsyu@gmail.com</a></p>
-</section>
-
-<footer>
-    © 2026 Ernest Syu
-</footer>
 
 </body>
 </html>
