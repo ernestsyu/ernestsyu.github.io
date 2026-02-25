@@ -6,110 +6,234 @@
 <title>Ernest Syu | Violinist</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body, html {
-    height: 100%;
+body{
     font-family: Helvetica, Arial, sans-serif;
+    background:#000;
+    color:white;
+    overflow-x:hidden;
 }
 
-/* ===== Navigation ===== */
-nav {
-    position: absolute;
-    top: 30px;
-    right: 50px;
-    z-index: 10;
+/* Navigation */
+nav{
+    position:fixed;
+    top:0;
+    right:40px;
+    padding:30px 0;
+    z-index:1000;
 }
 
-nav a {
-    color: white !important;
-    text-decoration: none;
-    margin-left: 25px;
-    font-size: 15px;
-    letter-spacing: 1px;
+nav a{
+    margin-left:25px;
+    text-decoration:none;
+    color:white;
+    font-size:14px;
+    letter-spacing:1px;
+    transition:opacity 0.3s ease;
 }
 
-nav a:hover {
-    opacity: 0.7;
+nav a:hover{
+    opacity:0.6;
 }
 
-/* ===== Hero ===== */
-.hero {
-    height: 100vh;
-    width: 100%;
-    background-image: url('hero.jpg');
-    background-size: cover;
-    background-position: 45% center; /* 桌機微左 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Sections */
+section{
+    min-height:100vh;
+    padding:120px 10%;
+    display:none;
 }
 
-.hero-text {
-    text-align: center;
-    color: white !important;
-    text-shadow: 0 0 20px rgba(0,0,0,0.8);
+section.active{
+    display:block;
+    animation:fadeIn 1s ease forwards;
 }
 
-.hero-text h1 {
-    font-size: 52px;
-    font-weight: 500;
-    letter-spacing: 3px;
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
 }
 
-.hero-text p {
-    font-size: 20px;
-    margin-top: 12px;
+/* Hero */
+.hero{
+    height:100vh;
+    background:url("hero.jpg") center center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
 }
 
-/* ===== Mobile ===== */
-@media (max-width: 768px) {
+.hero-text{
+    color:white;
+}
 
-    nav {
-        right: 20px;
-        top: 20px;
-    }
+.hero-text h1{
+    font-size:48px;
+    font-weight:300;
+    letter-spacing:2px;
+}
 
-    nav a {
-        margin-left: 15px;
-        font-size: 13px;
-    }
+.hero-text p{
+    font-size:18px;
+    margin-top:15px;
+    letter-spacing:2px;
+}
 
-    .hero {
-        background-position: 42% center; /* 手機折中，不會太左 */
-    }
+/* Concert toggle */
+.toggle{
+    margin-bottom:40px;
+}
 
-    .hero-text h1 {
-        font-size: 34px;
-    }
+.toggle button{
+    background:none;
+    border:1px solid white;
+    color:white;
+    padding:8px 18px;
+    margin-right:10px;
+    cursor:pointer;
+    transition:0.3s ease;
+}
 
-    .hero-text p {
-        font-size: 16px;
-    }
+.toggle button.active,
+.toggle button:hover{
+    background:white;
+    color:black;
+}
+
+/* Cursor */
+.cursor{
+    width:18px;
+    height:18px;
+    border:1px solid rgba(255,255,255,0.8);
+    border-radius:50%;
+    position:fixed;
+    pointer-events:none;
+    transform:translate(-50%,-50%);
+    transition:0.1s ease-out;
+    z-index:9999;
 }
 </style>
 </head>
 
 <body>
 
+<div class="cursor"></div>
+
 <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="concerts.html">Concerts</a>
-    <a href="media.html">Media</a>
-    <a href="contact.html">Contact</a>
+<a onclick="showSection('home')">Home</a>
+<a onclick="showSection('about')">About</a>
+<a onclick="showSection('concerts')">Concerts</a>
+<a onclick="showSection('media')">Media</a>
+<a onclick="showSection('contact')">Contact</a>
 </nav>
 
+<!-- HOME -->
+<section id="home" class="active">
 <div class="hero">
-    <div class="hero-text">
-        <h1>Ernest Syu</h1>
-        <p>Violinist</p>
-    </div>
+<div class="hero-text">
+<h1>Ernest Syu</h1>
+<p>Violinist | Solo · Chamber · Orchestral</p>
 </div>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<h2>About</h2>
+<br><br>
+<p>
+Ernest Syu is a versatile concert violinist whose artistic presence spans solo, chamber, and orchestral stages.
+His musicianship is defined by expressive depth, stylistic range, and a commitment to both individual voice and collaborative artistry.
+</p>
+<br>
+<p>
+He performs on a 1726 Matteo Goffriller violin, generously loaned by the Rin Collection in Singapore.
+</p>
+
+<br><br>
+<h3>Press / Reviews</h3>
+<p>Press materials available upon request.</p>
+
+<br><br>
+<h3>Repertoire</h3>
+<h4>Chamber Music</h4>
+<p>Brahms Piano Trio No.1<br>
+Mozart String Quartet K.465<br>
+Shostakovich Piano Quintet</p>
+
+<br>
+<h4>Solo</h4>
+<p>(To be updated)</p>
+</section>
+
+<!-- CONCERTS -->
+<section id="concerts">
+<h2>Concerts</h2>
+<br><br>
+
+<div class="toggle">
+<button class="active" onclick="showConcert('upcoming', this)">Upcoming</button>
+<button onclick="showConcert('past', this)">Past</button>
+</div>
+
+<div id="upcoming">
+<p><strong>November 2025</strong><br>
+Tchaikovsky Violin Concerto<br>
+<em>Solo</em></p>
+</div>
+
+<div id="past" style="display:none;">
+<p><strong>July 2025</strong><br>
+Brahms Piano Quartet No.1<br>
+<em>Chamber Music</em></p>
+</div>
+</section>
+
+<!-- MEDIA -->
+<section id="media">
+<h2>Media</h2>
+<br><br>
+<p>Media content coming soon.</p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<h2>Contact</h2>
+<br><br>
+<p>Email: ernestsyu@gmail.com</p>
+</section>
+
+<script>
+function showSection(id){
+    document.querySelectorAll("section").forEach(sec=>{
+        sec.classList.remove("active");
+    });
+    document.getElementById(id).classList.add("active");
+}
+
+function showConcert(type, btn){
+    document.getElementById("upcoming").style.display="none";
+    document.getElementById("past").style.display="none";
+    document.getElementById(type).style.display="block";
+
+    document.querySelectorAll(".toggle button").forEach(b=>{
+        b.classList.remove("active");
+    });
+    btn.classList.add("active");
+}
+
+/* Cursor */
+const cursor=document.querySelector(".cursor");
+document.addEventListener("mousemove",e=>{
+    cursor.style.left=e.clientX+"px";
+    cursor.style.top=e.clientY+"px";
+});
+</script>
 
 </body>
 </html>
