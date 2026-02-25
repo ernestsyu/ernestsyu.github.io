@@ -4,122 +4,55 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ernest Syu | Violinist</title>
-
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family: Helvetica, Arial, sans-serif;
-    background:#000;
-    color:white;
-    overflow-x:hidden;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; background:#fff; color:#111; overflow-x:hidden; line-height:1.8;}
 
 /* Navigation */
 nav{
-    position:fixed;
-    top:0;
-    right:40px;
-    padding:30px 0;
-    z-index:1000;
+    position:fixed; top:0; right:60px; padding:40px 0; font-size:14px; letter-spacing:2px; z-index:1000;
 }
-
 nav a{
-    margin-left:25px;
-    text-decoration:none;
-    color:white;
-    font-size:14px;
-    letter-spacing:1px;
-    transition:opacity 0.3s ease;
+    margin-left:30px; text-decoration:none; color:#000; transition:0.3s ease;
 }
-
-nav a:hover{
-    opacity:0.6;
-}
-
-/* Sections */
-section{
-    min-height:100vh;
-    padding:120px 10%;
-    display:none;
-}
-
-section.active{
-    display:block;
-    animation:fadeIn 1s ease forwards;
-}
-
-@keyframes fadeIn{
-    from{opacity:0;}
-    to{opacity:1;}
-}
-
-/* Hero */
-.hero{
-    height:100vh;
-    background:url("hero.jpg") center center/cover no-repeat;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-}
-
-.hero-text{
-    color:white;
-}
-
-.hero-text h1{
-    font-size:48px;
-    font-weight:300;
-    letter-spacing:2px;
-}
-
-.hero-text p{
-    font-size:18px;
-    margin-top:15px;
-    letter-spacing:2px;
-}
-
-/* Concert toggle */
-.toggle{
-    margin-bottom:40px;
-}
-
-.toggle button{
-    background:none;
-    border:1px solid white;
-    color:white;
-    padding:8px 18px;
-    margin-right:10px;
-    cursor:pointer;
-    transition:0.3s ease;
-}
-
-.toggle button.active,
-.toggle button:hover{
-    background:white;
-    color:black;
-}
+nav a:hover{opacity:0.5;}
 
 /* Cursor */
 .cursor{
-    width:18px;
-    height:18px;
-    border:1px solid rgba(255,255,255,0.8);
-    border-radius:50%;
-    position:fixed;
-    pointer-events:none;
-    transform:translate(-50%,-50%);
-    transition:0.1s ease-out;
-    z-index:9999;
+    width:18px; height:18px; border:1px solid rgba(0,0,0,0.8);
+    border-radius:50%; position:fixed; pointer-events:none;
+    transform:translate(-50%,-50%); transition:0.1s ease-out; z-index:9999;
 }
+
+/* Sections */
+section{min-height:100vh; padding:140px 10%; display:none;}
+section.active{display:block; animation:fadeIn 1s ease forwards;}
+@keyframes fadeIn{from{opacity:0;} to{opacity:1;}}
+
+/* Hero */
+.hero{height:100vh; background:url("hero.jpg") center center/cover no-repeat; display:flex; justify-content:center; align-items:center; text-align:center;}
+.hero-text h1{font-size:48px; font-weight:300; color:white; letter-spacing:2px;}
+.hero-text p{font-size:18px; color:white; margin-top:15px; letter-spacing:2px;}
+
+/* About */
+.container{max-width:900px; margin:auto; padding:0 30px;}
+h1{font-size:34px; font-weight:400; margin-bottom:60px;}
+h2{font-size:18px; letter-spacing:2px; margin-top:80px; margin-bottom:20px; font-weight:500;}
+.bio p{margin-bottom:18px;}
+.toggle{cursor:pointer; letter-spacing:2px; font-size:14px; margin-bottom:20px;}
+.toggle:hover{opacity:0.6;}
+.repertoire-content{display:none;margin-top:30px;}
+ul{padding-left:18px;}
+
+/* Concerts */
+.toggle-button{background:none; border:1px solid #000; color:#000; padding:8px 18px; margin-right:10px; cursor:pointer; transition:0.3s ease;}
+.toggle-button.active, .toggle-button:hover{background:#000; color:#fff;}
+
+/* Media */
+.video{margin-bottom:100px;}
+iframe{width:100%; height:500px; max-width:900px;}
 </style>
 </head>
-
 <body>
 
 <div class="cursor"></div>
@@ -144,90 +77,116 @@ section.active{
 
 <!-- ABOUT -->
 <section id="about">
-<h2>About</h2>
-<br><br>
+<div class="container">
+<h1>About</h1>
+<div class="bio">
 <p>
-Ernest Syu is a versatile concert violinist whose artistic presence spans solo, chamber, and orchestral stages.
-His musicianship is defined by expressive depth, stylistic range, and a commitment to both individual voice and collaborative artistry.
+Ernest Syu is a versatile and dynamic violinist recognized for his diverse artistic voice as a soloist, chamber musician, and orchestral leader. He is currently pursuing his Bachelor of Music at the Yong Siew Toh Conservatory of Music, National University of Singapore, under the tutelage of Professor Qian Zhou. He regularly performs as a freelance violinist with the Singapore Symphony Orchestra.
 </p>
-<br>
+<p>
+Ernest first gained national recognition after winning First Prize at the National Music Competition (Taiwan) in both Piano Trio and String Quartet categories at the age of fourteen — a defining moment that affirmed his path toward a professional career in music.
+</p>
+<p>
+As a concerto soloist, Ernest has performed Tchaikovsky’s Violin Concerto with the Yong Siew Toh Conservatory Orchestra and Mozart’s Violin Concerto No. 4 with the Academy of Taiwan Strings. His chamber music collaborations include a performance of Chausson’s Concerto for Violin, Piano and String Quartet alongside violinist Paul Huang and pianist Ning An.
+</p>
+<p>
+An active chamber musician, Ernest has participated in international festivals including the Talis Festival Academy (Sarajevo), Keshet Eilon International Music Festival (Spain), Festival Academy Budapest, and Chofu International Music Festival (Japan).
+</p>
 <p>
 He performs on a 1726 Matteo Goffriller violin, generously loaned by the Rin Collection in Singapore.
 </p>
+</div>
 
-<br><br>
-<h3>Press / Reviews</h3>
-<p>Press materials available upon request.</p>
+<h2>Press / Reviews</h2>
+<p>National Piano & Violin Competition Final Round — The Straits Times</p>
+<p>“Ernest Syu delivered a confident and musically compelling performance of Tchaikovsky’s Violin Concerto, demonstrating both lyrical sensitivity and commanding virtuosity.”</p>
 
-<br><br>
-<h3>Repertoire</h3>
-<h4>Chamber Music</h4>
-<p>Brahms Piano Trio No.1<br>
-Mozart String Quartet K.465<br>
-Shostakovich Piano Quintet</p>
-
-<br>
-<h4>Solo</h4>
+<h2 class="toggle" onclick="toggleRepertoire()">Repertoire +</h2>
+<div class="repertoire-content" id="repertoire">
+<h2>Chamber Music</h2>
+<ul>
+<li>Mozart: String Quartet No. 19 K. 465 “Dissonance”</li>
+<li>Haydn: String Quartet Op. 33 No. 2 “The Joke”</li>
+<li>Haydn: String Quartet Op. 76 No. 3 “Emperor”</li>
+<li>Shostakovich: String Quartet No. 7</li>
+<li>Shostakovich: String Quartet No. 8</li>
+<li>Beethoven: String Quartet Op. 18 No. 6</li>
+<li>Ravel: String Quartet</li>
+<li>Schubert: Quartettsatz D. 703</li>
+<li>Tailleferre: String Quartet</li>
+<li>Brahms: Horn Trio Op. 40</li>
+<li>Ewazen: Horn Trio</li>
+<li>Arensky: Piano Trio No. 1</li>
+<li>Chausson: Concerto Op. 21</li>
+</ul>
+<h2>Solo Repertoire</h2>
 <p>(To be updated)</p>
-</section>
+</div>
+</div>
 
 <!-- CONCERTS -->
 <section id="concerts">
-<h2>Concerts</h2>
-<br><br>
-
+<div class="container">
+<h1>Concerts</h1>
 <div class="toggle">
-<button class="active" onclick="showConcert('upcoming', this)">Upcoming</button>
-<button onclick="showConcert('past', this)">Past</button>
+<button class="toggle-button active" onclick="showConcert('upcoming', this)">Upcoming</button>
+<button class="toggle-button" onclick="showConcert('past', this)">Past</button>
 </div>
-
 <div id="upcoming">
-<p><strong>November 2025</strong><br>
-Tchaikovsky Violin Concerto<br>
-<em>Solo</em></p>
+<p><strong>November 2025</strong><br>Tchaikovsky Violin Concerto – National Piano & Violin Competition Final<br><em>Solo</em></p>
 </div>
-
 <div id="past" style="display:none;">
-<p><strong>July 2025</strong><br>
-Brahms Piano Quartet No.1<br>
-<em>Chamber Music</em></p>
+<p><strong>July 2025</strong><br>Brahms Piano Quartet No.1<br><em>Chamber Music</em></p>
+</div>
 </div>
 </section>
 
 <!-- MEDIA -->
 <section id="media">
-<h2>Media</h2>
-<br><br>
-<p>Media content coming soon.</p>
+<div class="container">
+<h1>Media</h1>
+<div class="video">
+<h3>Tchaikovsky – Violin Concerto</h3>
+<iframe src="https://www.youtube.com/embed/p92YuvO2wJ0" frameborder="0" allowfullscreen></iframe>
+</div>
+<div class="video">
+<h3>Bach – Sonata No. 3 BWV 1005</h3>
+<iframe src="https://www.youtube.com/embed/5LrhNGogXBE" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-<h2>Contact</h2>
-<br><br>
+<div class="container">
+<h1>Contact</h1>
 <p>Email: ernestsyu@gmail.com</p>
+</div>
 </section>
 
 <script>
 function showSection(id){
-    document.querySelectorAll("section").forEach(sec=>{
-        sec.classList.remove("active");
-    });
+    document.querySelectorAll("section").forEach(sec=>sec.classList.remove("active"));
     document.getElementById(id).classList.add("active");
 }
 
+// Concert toggle
 function showConcert(type, btn){
     document.getElementById("upcoming").style.display="none";
     document.getElementById("past").style.display="none";
     document.getElementById(type).style.display="block";
 
-    document.querySelectorAll(".toggle button").forEach(b=>{
-        b.classList.remove("active");
-    });
+    document.querySelectorAll(".toggle button").forEach(b=>b.classList.remove("active"));
     btn.classList.add("active");
 }
 
-/* Cursor */
+// Repertoire toggle
+function toggleRepertoire(){
+    var content=document.getElementById("repertoire");
+    content.style.display = (content.style.display==="block") ? "none" : "block";
+}
+
+// Cursor
 const cursor=document.querySelector(".cursor");
 document.addEventListener("mousemove",e=>{
     cursor.style.left=e.clientX+"px";
