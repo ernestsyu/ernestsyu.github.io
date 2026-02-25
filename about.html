@@ -1,125 +1,187 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About | Ernest Syu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-    margin: 0;
-    padding: 80px 20px;
-    max-width: 850px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.9;
-    color: #111;
+
+body{
+margin:0;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+background:#ffffff;
+color:#111;
+line-height:1.8;
 }
 
-nav {
-    position: absolute;
-    top: 30px;
-    right: 50px;
+/* Navigation */
+
+nav{
+position:fixed;
+top:0;
+right:60px;
+padding:40px 0;
+font-size:14px;
+letter-spacing:2px;
 }
 
-nav a {
-    text-decoration: none;
-    margin-left: 25px;
-    color: #111;
-    font-size: 14px;
-    letter-spacing: 1px;
+nav a{
+margin-left:30px;
+text-decoration:none;
+color:#000;
 }
 
-nav a:hover {
-    opacity: 0.6;
+nav a:hover{
+opacity:0.5;
 }
 
-h1 {
-    font-weight: 500;
-    margin-bottom: 40px;
+/* Layout */
+
+.container{
+max-width:900px;
+margin:180px auto 120px auto;
+padding:0 30px;
 }
 
-h2 {
-    margin-top: 70px;
-    font-weight: 500;
+h1{
+font-size:34px;
+font-weight:400;
+margin-bottom:60px;
 }
 
-ul {
-    margin-top: 15px;
+h2{
+font-size:18px;
+letter-spacing:2px;
+margin-top:80px;
+margin-bottom:20px;
+font-weight:500;
 }
+
+.bio{
+font-size:17px;
+}
+
+.section{
+margin-top:80px;
+}
+
+/* Repertoire Toggle */
+
+.repertoire-content{
+display:none;
+margin-top:30px;
+}
+
+.toggle{
+cursor:pointer;
+letter-spacing:2px;
+font-size:14px;
+}
+
+.toggle:hover{
+opacity:0.6;
+}
+
+ul{
+padding-left:18px;
+}
+
 </style>
 </head>
 
 <body>
 
 <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="concerts.html">Concerts</a>
-    <a href="media.html">Media</a>
-    <a href="contact.html">Contact</a>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="concerts.html">Concerts</a>
+<a href="media.html">Media</a>
+<a href="contact.html">Contact</a>
 </nav>
+
+<div class="container">
 
 <h1>About</h1>
 
+<div class="bio">
 <p>
-Ernest Syu is a Singapore-based violinist known for his versatility as both a soloist and chamber musician. 
-He is currently pursuing a Bachelor of Music in Violin Performance at the Yong Siew Toh Conservatory of Music, 
-National University of Singapore, studying with Professor Qian Zhou.
+Ernest Syu is a versatile and dynamic violinist recognized for his diverse artistic voice as a soloist, chamber musician, and orchestral leader. He is currently pursuing his Bachelor of Music at the Yong Siew Toh Conservatory of Music, National University of Singapore, under the tutelage of Professor Qian Zhou. He regularly performs as a freelance violinist with the Singapore Symphony Orchestra.
 </p>
 
 <p>
-Ernest has appeared as soloist with the Yong Siew Toh Conservatory Orchestra and the Academy of Taiwan Strings, 
-performing major concertos including Tchaikovsky’s Violin Concerto and Mozart’s Violin Concerto No. 4. 
-He is a prizewinner of multiple competitions, including First Prize at the Singapore National Piano and Violin Competition 
-(Artist Category) and the Sylvia Shu-te Lee Violin Competition.
+Ernest first gained national recognition after winning First Prize at the National Music Competition (Taiwan) in both Piano Trio and String Quartet categories at the age of fourteen — a defining moment that affirmed his path toward a professional career in music.
 </p>
 
 <p>
-An active chamber musician, Ernest previously served as second violinist of the CAVE Quartet and concertmaster 
-of the Sounds Good Chamber Orchestra in Taipei. His chamber collaborations include a performance of Chausson’s 
-Concerto for Violin, Piano and String Quartet alongside violinist Paul Huang and pianist Ning An.
+As a concerto soloist, Ernest has performed Tchaikovsky’s Violin Concerto with the Yong Siew Toh Conservatory Orchestra and Mozart’s Violin Concerto No. 4 with the Academy of Taiwan Strings. His chamber music collaborations include a performance of Chausson’s Concerto for Violin, Piano and String Quartet alongside violinist Paul Huang and pianist Ning An.
+</p>
+
+<p>
+An active chamber musician, Ernest has participated in international festivals including the Talis Festival Academy (Sarajevo), Keshet Eilon International Music Festival (Spain), Festival Academy Budapest, and Chofu International Music Festival (Japan).
 </p>
 
 <p>
 He performs on a 1726 Matteo Goffriller violin, generously loaned by the Rin Collection in Singapore.
 </p>
+</div>
 
+<div class="section">
 <h2>Press / Reviews</h2>
 
 <p>
-“The competition uncovered a number of promising young talents, among them violinist Ernest Syu, whose performance 
-demonstrated maturity and expressive depth.” — The Straits Times
+National Piano & Violin Competition Final Round — The Straits Times
 </p>
 
 <p>
-“His Tchaikovsky concerto performance was marked by lyrical phrasing and confident virtuosity.” — Pianofortephilia
+“Ernest Syu delivered a confident and musically compelling performance of Tchaikovsky’s Violin Concerto, demonstrating both lyrical sensitivity and commanding virtuosity.”
 </p>
 
-<h2>Repertoire</h2>
+</div>
 
-<h3>Solo & Concertos</h3>
+<div class="section">
+
+<h2 class="toggle" onclick="toggleRepertoire()">Repertoire +</h2>
+
+<div class="repertoire-content" id="repertoire">
+
+<h2>Chamber Music</h2>
+
 <ul>
-<li>Tchaikovsky – Violin Concerto in D Major</li>
-<li>Mozart – Violin Concerto No. 4</li>
-<li>Vivaldi – Concerto for Four Violins</li>
-<li>J.S. Bach – Sonata No. 3 in C Major, BWV 1005</li>
-<li>Ysaÿe – Sonata No. 6</li>
+<li>Mozart: String Quartet No. 19 K. 465 “Dissonance”</li>
+<li>Haydn: String Quartet Op. 33 No. 2 “The Joke”</li>
+<li>Haydn: String Quartet Op. 76 No. 3 “Emperor”</li>
+<li>Shostakovich: String Quartet No. 7</li>
+<li>Shostakovich: String Quartet No. 8</li>
+<li>Beethoven: String Quartet Op. 18 No. 6</li>
+<li>Ravel: String Quartet</li>
+<li>Schubert: Quartettsatz D. 703</li>
+<li>Tailleferre: String Quartet</li>
+<li>Brahms: Horn Trio Op. 40</li>
+<li>Ewazen: Horn Trio</li>
+<li>Arensky: Piano Trio No. 1</li>
+<li>Chausson: Concerto Op. 21</li>
 </ul>
 
-<h3>Chamber Music</h3>
-<ul>
-<li>Mozart – String Quartet No. 19 “Dissonance”</li>
-<li>Haydn – Op. 33 No. 2 “The Joke”</li>
-<li>Haydn – Op. 76 No. 3 “Emperor”</li>
-<li>Beethoven – String Quartet Op. 18 No. 6</li>
-<li>Ravel – String Quartet</li>
-<li>Shostakovich – String Quartets No. 7 & 8</li>
-<li>Chausson – Concerto for Violin, Piano and String Quartet</li>
-<li>Brahms – Horn Trio, Op. 40</li>
-<li>Arensky – Piano Trio No. 1</li>
-</ul>
+<h2>Solo Repertoire</h2>
+<p>(To be updated)</p>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+function toggleRepertoire(){
+var content = document.getElementById("repertoire");
+if(content.style.display === "block"){
+content.style.display = "none";
+}else{
+content.style.display = "block";
+}
+}
+</script>
 
 </body>
 </html>
