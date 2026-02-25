@@ -1,198 +1,383 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Ernest Syu | Violinist</title>
+
+<!-- 字體：優雅 serif + 現代 sans -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; background:#fff; color:#111; overflow-x:hidden; line-height:1.8;}
+  /* 基本 */
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:#000; /* 主題色為黑 */
+    color:#f5f5f5;
+    font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.7;
+    overflow-x:hidden;
+  }
 
-/* Navigation */
-nav{
-    position:fixed; top:0; right:60px; padding:40px 0; font-size:14px; letter-spacing:2px; z-index:1000;
-}
-nav a{
-    margin-left:30px; text-decoration:none; color:#000; transition:0.3s ease;
-}
-nav a:hover{opacity:0.5;}
+  /* 導覽（右上） */
+  nav{
+    position:fixed;
+    top:28px;
+    right:40px;
+    z-index:1200;
+    display:flex;
+    gap:20px;
+    align-items:center;
+  }
+  nav a{
+    color:rgba(245,245,245,0.92);
+    text-decoration:none;
+    font-size:14px;
+    letter-spacing:1.2px;
+    padding:6px 2px;
+    transition:transform .18s ease, opacity .18s ease;
+  }
+  nav a:hover{ transform:translateY(-3px); opacity:0.85; }
 
-/* Cursor */
-.cursor{
-    width:18px; height:18px; border:1px solid rgba(0,0,0,0.8);
-    border-radius:50%; position:fixed; pointer-events:none;
-    transform:translate(-50%,-50%); transition:0.1s ease-out; z-index:9999;
-}
+  /* cursor */
+  .cursor{
+    width:18px; height:18px; border-radius:50%;
+    border:1px solid rgba(255,255,255,0.85);
+    position:fixed; pointer-events:none; transform:translate(-50%,-50%);
+    z-index:2000; transition:transform .12s ease, background .12s ease, width .12s ease, height .12s ease;
+    mix-blend-mode:screen;
+  }
 
-/* Sections */
-section{min-height:100vh; padding:140px 10%; display:none;}
-section.active{display:block; animation:fadeIn 1s ease forwards;}
-@keyframes fadeIn{from{opacity:0;} to{opacity:1;}}
+  a:hover ~ .cursor, a:focus ~ .cursor { transform:translate(-50%,-50%) scale(1.6); }
 
-/* Hero */
-.hero{height:100vh; background:url("hero.jpg") center center/cover no-repeat; display:flex; justify-content:center; align-items:center; text-align:center;}
-.hero-text h1{font-size:48px; font-weight:300; color:white; letter-spacing:2px;}
-.hero-text p{font-size:18px; color:white; margin-top:15px; letter-spacing:2px;}
+  /* 區塊共用 */
+  .section{
+    min-height:100vh;
+    padding:120px 8%;
+    display:none;
+    opacity:0;
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .section.active{ display:block; opacity:1; transform:none; }
 
-/* About */
-.container{max-width:900px; margin:auto; padding:0 30px;}
-h1{font-size:34px; font-weight:400; margin-bottom:60px;}
-h2{font-size:18px; letter-spacing:2px; margin-top:80px; margin-bottom:20px; font-weight:500;}
-.bio p{margin-bottom:18px;}
-.toggle{cursor:pointer; letter-spacing:2px; font-size:14px; margin-bottom:20px;}
-.toggle:hover{opacity:0.6;}
-.repertoire-content{display:none;margin-top:30px;}
-ul{padding-left:18px;}
+  .container{ max-width:960px; margin:0 auto; }
 
-/* Concerts */
-.toggle-button{background:none; border:1px solid #000; color:#000; padding:8px 18px; margin-right:10px; cursor:pointer; transition:0.3s ease;}
-.toggle-button.active, .toggle-button:hover{background:#000; color:#fff;}
+  h1, h2, h3{ margin-bottom:18px; }
+  h1{ font-family:"Cormorant Garamond", serif; font-size:46px; font-weight:600; letter-spacing:2px; color:#fff; }
+  h2{ font-family:"Cormorant Garamond", serif; font-size:20px; color:rgba(245,245,245,0.95); letter-spacing:2px; margin-top:8px; }
+  p{ font-size:16px; color:rgba(230,230,230,0.98); }
 
-/* Media */
-.video{margin-bottom:100px;}
-iframe{width:100%; height:500px; max-width:900px;}
+  /* HERO */
+  .hero{
+    height:100vh;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background-color:#000;
+  }
+  .hero img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    object-position:45% center; /* 桌機微左 */
+    filter:contrast(0.95) saturate(0.9);
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.55)); /* 柔霧，強化對比 */
+    z-index:1;
+    backdrop-filter: blur(1px);
+  }
+  .hero-inner{
+    position:relative; z-index:2; max-width:1100px; padding:40px;
+  }
+
+  /* 讓 hero 文字更顯眼：白字 + 半透明 backdrop */
+  .hero-box{
+    display:inline-block;
+    padding:28px 36px;
+    background:rgba(0,0,0,0.45);
+    border:1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(4px);
+    border-radius:6px;
+  }
+  .hero-title{ font-family:"Cormorant Garamond", serif; font-size:72px; line-height:0.95; color:#fff; margin-bottom:8px; }
+  .hero-sub{ font-size:18px; color:rgba(245,245,245,0.95); letter-spacing:2px; }
+
+  /* 內容區塊樣式 */
+  .about .bio p{ margin-bottom:18px; }
+  .press p{ margin-bottom:14px; color:rgba(210,210,210,0.95); font-style:normal; }
+  .repertoire-toggle{ cursor:pointer; color:rgba(245,245,245,0.95); letter-spacing:1.4px; margin-top:32px; display:inline-block; }
+  .repertoire{ display:none; margin-top:20px; }
+  .repertoire ul{ list-style: none; padding-left:0; column-count:1; }
+  .repertoire li{ padding:6px 0; color:rgba(225,225,225,0.95); }
+
+  /* Concerts 樣式 */
+  .tabs{ margin:28px 0 36px 0; display:flex; gap:12px; }
+  .tab-btn{
+    padding:8px 18px; border:1px solid rgba(255,255,255,0.12);
+    background:transparent; color:rgba(245,245,245,0.95); cursor:pointer; letter-spacing:1px;
+    transition: all .18s ease;
+  }
+  .tab-btn.active{ background:#fff; color:#000; border-color:rgba(255,255,255,0.12); }
+
+  .concert-item{ margin-bottom:20px; color:rgba(220,220,220,0.95); }
+  .concert-type{ font-style:italic; color:rgba(190,190,190,0.95); }
+
+  /* Media */
+  .video{ margin-bottom:48px; }
+  .video h3{ font-family:"Cormorant Garamond", serif; font-size:22px; color:#fff; margin-bottom:8px; }
+  .video p{ color:rgba(210,210,210,0.95); margin-bottom:12px; }
+
+  iframe{ width:100%; height:520px; border:0; background:#000; }
+
+  /* Contact */
+  .contact p{ margin-bottom:10px; }
+  .mailto{ color:rgba(255,255,255,0.95); text-decoration:underline; }
+
+  /* Responsive  */
+  @media (max-width:1000px){
+    .hero-title{ font-size:56px; }
+    .hero-box{ padding:22px 28px; }
+    iframe{ height:420px; }
+    .container{ padding:0 24px; }
+  }
+  @media (max-width:720px){
+    nav{ right:20px; top:18px; }
+    .hero img{ object-position:42% center; } /* 手機折中裁切 */
+    .hero-title{ font-size:36px; }
+    .hero-box{ padding:18px 20px; }
+    iframe{ height:320px; }
+    .tabs{ flex-wrap:wrap; }
+  }
+
+  /* 小動作：連結 hover 微放大 */
+  a:hover{ transform:translateY(-2px); }
+
 </style>
 </head>
 <body>
 
-<div class="cursor"></div>
+<!-- 自訂 cursor -->
+<div class="cursor" id="cursor"></div>
 
+<!-- 導覽 -->
 <nav>
-<a onclick="showSection('home')">Home</a>
-<a onclick="showSection('about')">About</a>
-<a onclick="showSection('concerts')">Concerts</a>
-<a onclick="showSection('media')">Media</a>
-<a onclick="showSection('contact')">Contact</a>
+  <a onclick="showSection('home')" role="button">Home</a>
+  <a onclick="showSection('about')" role="button">About</a>
+  <a onclick="showSection('concerts')" role="button">Concerts</a>
+  <a onclick="showSection('media')" role="button">Media</a>
+  <a onclick="showSection('contact')" role="button">Contact</a>
 </nav>
 
-<!-- HOME -->
-<section id="home" class="active">
-<div class="hero">
-<div class="hero-text">
-<h1>Ernest Syu</h1>
-<p>Violinist | Solo · Chamber · Orchestral</p>
-</div>
-</div>
+<!-- HOME / HERO -->
+<section id="home" class="section active" aria-label="home">
+  <div class="hero">
+    <img src="hero.jpg" alt="Ernest Syu performing" />
+    <div class="hero-inner">
+      <div class="hero-box" role="banner">
+        <div style="text-align:center;">
+          <div class="hero-title">Ernest Syu</div>
+          <div class="hero-sub">Violinist | Solo · Chamber · Orchestral</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ABOUT -->
-<section id="about">
-<div class="container">
-<h1>About</h1>
-<div class="bio">
-<p>
-Ernest Syu is a versatile and dynamic violinist recognized for his diverse artistic voice as a soloist, chamber musician, and orchestral leader. He is currently pursuing his Bachelor of Music at the Yong Siew Toh Conservatory of Music, National University of Singapore, under the tutelage of Professor Qian Zhou. He regularly performs as a freelance violinist with the Singapore Symphony Orchestra.
-</p>
-<p>
-Ernest first gained national recognition after winning First Prize at the National Music Competition (Taiwan) in both Piano Trio and String Quartet categories at the age of fourteen — a defining moment that affirmed his path toward a professional career in music.
-</p>
-<p>
-As a concerto soloist, Ernest has performed Tchaikovsky’s Violin Concerto with the Yong Siew Toh Conservatory Orchestra and Mozart’s Violin Concerto No. 4 with the Academy of Taiwan Strings. His chamber music collaborations include a performance of Chausson’s Concerto for Violin, Piano and String Quartet alongside violinist Paul Huang and pianist Ning An.
-</p>
-<p>
-An active chamber musician, Ernest has participated in international festivals including the Talis Festival Academy (Sarajevo), Keshet Eilon International Music Festival (Spain), Festival Academy Budapest, and Chofu International Music Festival (Japan).
-</p>
-<p>
-He performs on a 1726 Matteo Goffriller violin, generously loaned by the Rin Collection in Singapore.
-</p>
-</div>
+<section id="about" class="section" aria-label="about">
+  <div class="container about">
+    <h1>About</h1>
 
-<h2>Press / Reviews</h2>
-<p>National Piano & Violin Competition Final Round — The Straits Times</p>
-<p>“Ernest Syu delivered a confident and musically compelling performance of Tchaikovsky’s Violin Concerto, demonstrating both lyrical sensitivity and commanding virtuosity.”</p>
+    <div class="bio">
+      <p>
+        Ernest Syu is a versatile concert violinist whose artistic presence spans solo, chamber, and orchestral stages.
+        His musicianship is defined by expressive depth, stylistic range, and a commitment to both individual voice and collaborative artistry.
+      </p>
 
-<h2 class="toggle" onclick="toggleRepertoire()">Repertoire +</h2>
-<div class="repertoire-content" id="repertoire">
-<h2>Chamber Music</h2>
-<ul>
-<li>Mozart: String Quartet No. 19 K. 465 “Dissonance”</li>
-<li>Haydn: String Quartet Op. 33 No. 2 “The Joke”</li>
-<li>Haydn: String Quartet Op. 76 No. 3 “Emperor”</li>
-<li>Shostakovich: String Quartet No. 7</li>
-<li>Shostakovich: String Quartet No. 8</li>
-<li>Beethoven: String Quartet Op. 18 No. 6</li>
-<li>Ravel: String Quartet</li>
-<li>Schubert: Quartettsatz D. 703</li>
-<li>Tailleferre: String Quartet</li>
-<li>Brahms: Horn Trio Op. 40</li>
-<li>Ewazen: Horn Trio</li>
-<li>Arensky: Piano Trio No. 1</li>
-<li>Chausson: Concerto Op. 21</li>
-</ul>
-<h2>Solo Repertoire</h2>
-<p>(To be updated)</p>
-</div>
-</div>
+      <p>
+        He is currently pursuing a Bachelor of Music in Violin Performance at the Yong Siew Toh Conservatory of Music, National University of Singapore, where he studies with Professor Qian Zhou. Ernest regularly freelances with the Singapore Symphony Orchestra and has served in leadership roles in conservatory and chamber ensembles.
+      </p>
+
+      <p>
+        As a soloist, he has performed major works including Tchaikovsky’s Violin Concerto and Mozart’s Violin Concerto No. 4. His festival appearances include the Talis Festival Academy (Sarajevo), Keshet Eilon (Israel), Festival Academy Budapest, and Chofu International Music Festival (Japan).
+      </p>
+
+      <p>
+        He performs on a 1726 Matteo Goffriller violin, generously loaned by the Rin Collection in Singapore.
+      </p>
+    </div>
+
+    <div class="press" style="margin-top:34px;">
+      <h2>Press / Reviews</h2>
+      <p>“...made Tchaikovsky’s Violin Concerto sound freshly minted, garnering the loudest cheers from the audience.” — Pianofortephilia, 2025</p>
+      <p>Featured coverage: The Straits Times (National Piano & Violin Competition Final Round).</p>
+    </div>
+
+    <div style="margin-top:40px;">
+      <h2 class="repertoire-toggle" onclick="toggleRepertoire()">Repertoire ▾</h2>
+
+      <div class="repertoire" id="repertoire">
+        <div style="margin-top:10px;">
+          <h3>Chamber Music</h3>
+          <ul>
+            <li>Mozart — String Quartet No.19, K.465 “Dissonance”</li>
+            <li>Haydn — String Quartet Op.33 No.2 “The Joke”</li>
+            <li>Haydn — String Quartet Op.76 No.3 “Emperor”</li>
+            <li>Beethoven — String Quartet Op.18 No.6</li>
+            <li>Ravel — String Quartet</li>
+            <li>Shostakovich — String Quartets Nos.7 & 8</li>
+            <li>Chausson — Concerto for Violin, Piano and String Quartet</li>
+            <li>Brahms — Horn Trio Op.40</li>
+            <li>Arensky — Piano Trio No.1</li>
+          </ul>
+        </div>
+
+        <div style="margin-top:24px;">
+          <h3>Solo & Concertos</h3>
+          <ul>
+            <li>Tchaikovsky — Violin Concerto in D Major</li>
+            <li>Mozart — Violin Concerto No.4</li>
+            <li>Vivaldi — Concerto for Four Violins</li>
+            <li>J.S. Bach — Sonata No.3, BWV 1005</li>
+            <li>Eugène Ysaÿe — Sonata Op.27 No.6</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 <!-- CONCERTS -->
-<section id="concerts">
-<div class="container">
-<h1>Concerts</h1>
-<div class="toggle">
-<button class="toggle-button active" onclick="showConcert('upcoming', this)">Upcoming</button>
-<button class="toggle-button" onclick="showConcert('past', this)">Past</button>
-</div>
-<div id="upcoming">
-<p><strong>November 2025</strong><br>Tchaikovsky Violin Concerto – National Piano & Violin Competition Final<br><em>Solo</em></p>
-</div>
-<div id="past" style="display:none;">
-<p><strong>July 2025</strong><br>Brahms Piano Quartet No.1<br><em>Chamber Music</em></p>
-</div>
-</div>
+<section id="concerts" class="section" aria-label="concerts">
+  <div class="container">
+    <h1>Concerts</h1>
+
+    <div class="tabs" role="tablist" aria-label="Concert categories">
+      <button class="tab-btn active" onclick="showConcert('upcoming', this)" aria-controls="upcoming">Upcoming</button>
+      <button class="tab-btn" onclick="showConcert('past', this)" aria-controls="past">Past</button>
+    </div>
+
+    <div id="upcoming" class="concert-list">
+      <div class="concert-item">
+        <strong>June 2026</strong><br>
+        Solo Recital — Singapore<br>
+        <span class="concert-type">Solo</span>
+      </div>
+
+      <div class="concert-item">
+        <strong>September 2026</strong><br>
+        Chamber Residency — Europe (details TBA)<br>
+        <span class="concert-type">Chamber</span>
+      </div>
+    </div>
+
+    <div id="past" class="concert-list" style="display:none;">
+      <div class="concert-item">
+        <strong>November 2025</strong><br>
+        Tchaikovsky Violin Concerto — National Piano & Violin Competition Final<br>
+        <span class="concert-type">Solo</span>
+      </div>
+
+      <div class="concert-item">
+        <strong>March 2025</strong><br>
+        Mozart Violin Concerto No.4 — Academy of Taiwan Strings<br>
+        <span class="concert-type">Solo</span>
+      </div>
+
+      <div class="concert-item">
+        <strong>April 2024</strong><br>
+        Chausson: Concerto for Violin, Piano & String Quartet — collaboration with Paul Huang & Ning An<br>
+        <span class="concert-type">Chamber</span>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <!-- MEDIA -->
-<section id="media">
-<div class="container">
-<h1>Media</h1>
-<div class="video">
-<h3>Tchaikovsky – Violin Concerto</h3>
-<iframe src="https://www.youtube.com/embed/p92YuvO2wJ0" frameborder="0" allowfullscreen></iframe>
-</div>
-<div class="video">
-<h3>Bach – Sonata No. 3 BWV 1005</h3>
-<iframe src="https://www.youtube.com/embed/5LrhNGogXBE" frameborder="0" allowfullscreen></iframe>
-</div>
-</div>
+<section id="media" class="section" aria-label="media">
+  <div class="container">
+    <h1>Media</h1>
+
+    <div class="video">
+      <h3>Tchaikovsky — Violin Concerto (Final Round)</h3>
+      <p>National Piano & Violin Competition 2025 — livestream (selected excerpt)</p>
+      <iframe src="https://www.youtube.com/embed/p92YuvO2wJ0?start=6016" allowfullscreen loading="lazy"></iframe>
+    </div>
+
+    <div class="video">
+      <h3>J.S. Bach — Sonata No.3, BWV 1005 (Largo & Allegro assai)</h3>
+      <p>Academy of Taiwan Strings prizewinner concert</p>
+      <iframe src="https://www.youtube.com/embed/5LrhNGogXBE" allowfullscreen loading="lazy"></iframe>
+    </div>
+
+  </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact">
-<div class="container">
-<h1>Contact</h1>
-<p>Email: ernestsyu@gmail.com</p>
-</div>
+<section id="contact" class="section" aria-label="contact">
+  <div class="container contact">
+    <h1>Contact</h1>
+    <p>For concert bookings, press and enquiries:</p>
+    <p><a class="mailto" href="mailto:ernestsyu@gmail.com">ernestsyu@gmail.com</a></p>
+    <p style="margin-top:18px;color:rgba(200,200,200,0.9)">Press kit and full CV available on request.</p>
+  </div>
 </section>
 
 <script>
-function showSection(id){
-    document.querySelectorAll("section").forEach(sec=>sec.classList.remove("active"));
-    document.getElementById(id).classList.add("active");
-}
+  /* 單頁切換 */
+  function showSection(id){
+    document.querySelectorAll('.section').forEach(s=> s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0,0);
+    // 更新 URL fragment（不強迫導航）
+    history.replaceState(null, '', '#' + id);
+  }
 
-// Concert toggle
-function showConcert(type, btn){
-    document.getElementById("upcoming").style.display="none";
-    document.getElementById("past").style.display="none";
-    document.getElementById(type).style.display="block";
+  /* Concerts tab */
+  function showConcert(name, btn){
+    document.getElementById('upcoming').style.display = (name==='upcoming') ? 'block' : 'none';
+    document.getElementById('past').style.display = (name==='past') ? 'block' : 'none';
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  }
 
-    document.querySelectorAll(".toggle button").forEach(b=>b.classList.remove("active"));
-    btn.classList.add("active");
-}
+  /* Repertoire toggle */
+  function toggleRepertoire(){
+    const el = document.getElementById('repertoire');
+    el.style.display = (el.style.display==='block') ? 'none' : 'block';
+  }
 
-// Repertoire toggle
-function toggleRepertoire(){
-    var content=document.getElementById("repertoire");
-    content.style.display = (content.style.display==="block") ? "none" : "block";
-}
+  /* custom cursor */
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e=>{
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top  = e.clientY + 'px';
+  });
+  // 當滑鼠移到連結時微放大（另做保險）
+  document.querySelectorAll('a, button').forEach(el=>{
+    el.addEventListener('mouseenter', ()=> cursor.style.transform='translate(-50%,-50%) scale(1.6)');
+    el.addEventListener('mouseleave', ()=> cursor.style.transform='translate(-50%,-50%) scale(1)');
+  });
 
-// Cursor
-const cursor=document.querySelector(".cursor");
-document.addEventListener("mousemove",e=>{
-    cursor.style.left=e.clientX+"px";
-    cursor.style.top=e.clientY+"px";
-});
+  /* 初始：如果網址有 fragment（#about 等），自動顯示對應區 */
+  (function initFromHash(){
+    const hash = location.hash.replace('#','');
+    if(hash){
+      const valid = ['home','about','concerts','media','contact'];
+      if(valid.includes(hash)) showSection(hash);
+    } else {
+      showSection('home');
+    }
+  })();
+
 </script>
-
 </body>
 </html>
