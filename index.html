@@ -36,6 +36,7 @@
   h2{ font-family:"Cormorant Garamond", serif; font-size:20px; color:rgba(245,245,245,0.95); letter-spacing:2px; margin-top:8px; }
   p{ font-size:16px; color:rgba(230,230,230,0.98); }
 
+  /* Hero */
   .hero{
     height:100vh;
     position:relative;
@@ -56,6 +57,16 @@
   .hero-bio{ margin-top:16px; font-size:16px; color:rgba(225,225,225,0.95); max-width:700px; margin-left:auto;margin-right:auto;}
   .read-more{ display:inline-block; margin-top:18px; padding:8px 16px; border:1px solid rgba(255,255,255,0.3); cursor:pointer; transition: all .2s; color:#fff; }
   .read-more:hover{ background:#fff;color:#000; }
+
+  /* Hero animation */
+  @keyframes heroSlideIn {
+    0% {opacity:0; transform:translateY(24px);}
+    100% {opacity:1; transform:translateY(0);}
+  }
+  .animate-hero{
+    opacity:0;
+    animation: heroSlideIn 1s forwards;
+  }
 
   /* About */
   .about .bio p{ margin-bottom:18px; }
@@ -95,7 +106,6 @@
     iframe{ height:320px; }
     .tabs{ flex-wrap:wrap; }
   }
-
 </style>
 </head>
 <body>
@@ -115,10 +125,10 @@
     <div class="hero-inner">
       <div class="hero-box">
         <div style="text-align:center;">
-          <div class="hero-title">Ernest Syu</div>
-          <div class="hero-sub">Violinist | Solo · Chamber · Orchestral</div>
-          <div class="hero-bio">First prize winner, National Piano & Violin Competition; performed Tchaikovsky & Mozart concertos worldwide.</div>
-          <div class="read-more" onclick="showSection('about')">Read More</div>
+          <div class="hero-title animate-hero">Ernest Syu</div>
+          <div class="hero-sub animate-hero" style="animation-delay:.2s;">Violinist | Solo · Chamber · Orchestral</div>
+          <div class="hero-bio animate-hero" style="animation-delay:.4s;">First prize winner, National Piano & Violin Competition; performed Tchaikovsky & Mozart concertos worldwide.</div>
+          <div class="read-more" onclick="scrollToAbout()">Read More</div>
         </div>
       </div>
     </div>
@@ -250,14 +260,18 @@
   }
 
   /* Read More */
-  document.querySelectorAll('.read-more').forEach(el=>el.addEventListener('click', ()=> showSection('about')));
+  function scrollToAbout(){
+    const aboutSection = document.getElementById('about');
+    showSection('about');
+    aboutSection.scrollIntoView({behavior:'smooth'});
+  }
 
   /* 初始化 fragment hash */
-  (function initFromHash(){
+  window.addEventListener('DOMContentLoaded', () => {
     const hash = location.hash.replace('#','');
     const valid=['home','about','concerts','media','contact'];
     if(valid.includes(hash)) showSection(hash); else showSection('home');
-  })();
+  });
 </script>
 </body>
 </html>
