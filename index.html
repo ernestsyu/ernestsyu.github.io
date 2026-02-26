@@ -1,277 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Ernest Syu | Violinist</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html,body{height:100%; font-family:"Inter",system-ui,sans-serif; background:#000; color:#f5f5f5; line-height:1.7;}
-  body{overflow-x:hidden;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  height:100%;
+  background:#000;
+  color:#f5f5f5;
+  font-family:"Inter",sans-serif;
+  overflow-x:hidden;
+}
 
-  nav{
-    position:fixed; top:28px; right:40px; z-index:1200;
-    display:flex; gap:20px; align-items:center;
-  }
-  nav a{ color:rgba(245,245,245,0.92); text-decoration:none; font-size:14px; letter-spacing:1.2px; padding:6px 2px; transition:transform .18s ease, opacity .18s ease;}
-  nav a:hover{ transform:translateY(-3px); opacity:0.85; }
+/* NAV */
+nav{
+  position:fixed;
+  top:30px;
+  right:40px;
+  z-index:2000;
+  display:flex;
+  gap:22px;
+}
+nav a{
+  color:#fff;
+  text-decoration:none;
+  font-size:14px;
+  letter-spacing:1.5px;
+  cursor:pointer;
+  transition:.25s;
+}
+nav a:hover{opacity:.6}
 
-  .section{
-    min-height:100vh;
-    padding:120px 8%;
-    display:none;
-    opacity:0;
-    transform:translateY(24px);
-    transition:opacity .7s ease, transform .7s ease;
-  }
-  .section.active{ display:block; opacity:1; transform:translateY(0); }
+/* SECTIONS */
+.section{
+  min-height:100vh;
+  padding:120px 8%;
+  position:absolute;
+  width:100%;
+  top:0;
+  left:0;
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(20px);
+  transition:opacity .6s ease, transform .6s ease;
+}
+.section.active{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0);
+  position:relative;
+}
 
-  .container{ max-width:960px; margin:0 auto; }
+/* HERO */
+.hero{
+  height:100vh;
+  background:url('hero.jpg') center center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+.hero-box{
+  background:rgba(0,0,0,.45);
+  padding:40px 50px;
+}
+.hero-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:72px;
+  color:#fff;
+  animation:fadeUp 1s ease forwards;
+}
+.hero-sub{
+  margin-top:10px;
+  letter-spacing:2px;
+  animation:fadeUp 1.2s ease forwards;
+}
+.hero-bio{
+  margin-top:20px;
+  max-width:700px;
+  margin-left:auto;
+  margin-right:auto;
+  animation:fadeUp 1.4s ease forwards;
+}
+.read-more{
+  margin-top:25px;
+  display:inline-block;
+  padding:8px 18px;
+  border:1px solid #fff;
+  cursor:pointer;
+  transition:.3s;
+}
+.read-more:hover{
+  background:#fff;
+  color:#000;
+}
 
-  h1, h2, h3{ margin-bottom:18px; }
-  h1{ font-family:"Cormorant Garamond", serif; font-size:46px; font-weight:600; letter-spacing:2px; color:#fff; }
-  h2{ font-family:"Cormorant Garamond", serif; font-size:20px; color:rgba(245,245,245,0.95); letter-spacing:2px; margin-top:8px; }
-  p{ font-size:16px; color:rgba(230,230,230,0.98); }
+/* ABOUT */
+.container{max-width:900px;margin:auto}
+h1{
+  font-family:"Cormorant Garamond",serif;
+  font-size:40px;
+  margin-bottom:30px;
+}
+.press p{margin-bottom:12px;color:#ccc}
+.bio p{margin-bottom:18px}
 
-  /* Hero */
-  .hero{
-    height:100vh;
-    position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    background:#000 url('hero.jpg') center center/cover no-repeat;
-  }
-  .hero-inner{ position:relative; z-index:2; max-width:1100px; padding:40px; }
-  .hero-box{
-    display:inline-block; padding:28px 36px;
-    background:rgba(0,0,0,0.45);
-    border-radius:6px; border:1px solid rgba(255,255,255,0.06);
-  }
-  .hero-title{ font-family:"Cormorant Garamond", serif; font-size:72px; line-height:0.95; color:#fff; margin-bottom:8px; }
-  .hero-sub{ font-size:18px; color:rgba(245,245,245,0.95); letter-spacing:2px; }
-  .hero-bio{ margin-top:16px; font-size:16px; color:rgba(225,225,225,0.95); max-width:700px; margin-left:auto;margin-right:auto;}
-  .read-more{ display:inline-block; margin-top:18px; padding:8px 16px; border:1px solid rgba(255,255,255,0.3); cursor:pointer; transition: all .2s; color:#fff; }
-  .read-more:hover{ background:#fff;color:#000; }
+.repertoire-toggle{
+  margin-top:30px;
+  cursor:pointer;
+  letter-spacing:1.2px;
+}
+.repertoire-toggle::before{
+  content:"+ ";
+}
+.repertoire-toggle.open::before{
+  content:"- ";
+}
+.repertoire{
+  display:none;
+  margin-top:15px;
+}
+.repertoire li{
+  list-style:none;
+  margin-bottom:6px;
+}
 
-  /* Hero animation */
-  @keyframes heroSlideIn {
-    0% {opacity:0; transform:translateY(24px);}
-    100% {opacity:1; transform:translateY(0);}
-  }
-  .animate-hero{
-    opacity:0;
-    animation: heroSlideIn 1s forwards;
-  }
+/* CONCERTS */
+.tabs{margin:20px 0;display:flex;gap:10px}
+.tab-btn{
+  padding:6px 16px;
+  border:1px solid #fff;
+  background:transparent;
+  color:#fff;
+  cursor:pointer;
+}
+.tab-btn.active{
+  background:#fff;
+  color:#000;
+}
 
-  /* About */
-  .about .bio p{ margin-bottom:18px; }
-  .press p{ margin-bottom:14px; color:rgba(210,210,210,0.95); }
-  .repertoire-toggle{ cursor:pointer; color:rgba(245,245,245,0.95); letter-spacing:1.4px; margin-top:32px; display:inline-block; user-select:none; }
-  .repertoire-toggle::before{ content:"+"; margin-right:6px; font-weight:bold; }
-  .repertoire-toggle.open::before{ content:"-"; }
-  .repertoire{ display:none; margin-top:20px; }
-  .repertoire ul{ list-style:none; padding-left:0; }
-  .repertoire li{ padding:6px 0; color:rgba(225,225,225,0.95); }
+/* MEDIA */
+.video{margin-bottom:50px}
+iframe{width:100%;height:500px;border:0}
 
-  /* Concerts */
-  .tabs{ margin:28px 0 36px 0; display:flex; gap:12px; }
-  .tab-btn{ padding:8px 18px; border:1px solid rgba(255,255,255,0.12); background:transparent; color:rgba(245,245,245,0.95); cursor:pointer; letter-spacing:1px; transition: all .18s ease; }
-  .tab-btn.active{ background:#fff; color:#000; border-color:rgba(255,255,255,0.12); }
-  .concert-item{ margin-bottom:20px; color:rgba(220,220,220,0.95); }
-  .concert-type{ font-style:italic; color:rgba(190,190,190,0.95); }
+/* CONTACT */
+.mailto{color:#fff;text-decoration:underline}
 
-  /* Media */
-  .video{ margin-bottom:48px; }
-  .video h3{ font-family:"Cormorant Garamond", serif; font-size:22px; color:#fff; margin-bottom:8px; }
-  .video p{ color:rgba(210,210,210,0.95); margin-bottom:12px; }
-  iframe{ width:100%; height:520px; border:0; background:#000; }
+/* ANIMATION */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
 
-  /* Contact */
-  .contact p{ margin-bottom:10px; }
-  .mailto{ color:rgba(255,255,255,0.95); text-decoration:underline; }
-
-  @media (max-width:1000px){
-    .hero-title{ font-size:56px; }
-    iframe{ height:420px; }
-    .container{ padding:0 24px; }
-  }
-  @media (max-width:720px){
-    nav{ right:20px; top:18px; }
-    .hero-title{ font-size:36px; }
-    iframe{ height:320px; }
-    .tabs{ flex-wrap:wrap; }
-  }
+/* MOBILE */
+@media(max-width:768px){
+  .hero-title{font-size:40px}
+  iframe{height:300px}
+  nav{right:20px}
+}
 </style>
 </head>
+
 <body>
 
-<!-- 導覽 -->
 <nav>
-  <a onclick="showSection('home')">Home</a>
-  <a onclick="showSection('about')">About</a>
-  <a onclick="showSection('concerts')">Concerts</a>
-  <a onclick="showSection('media')">Media</a>
-  <a onclick="showSection('contact')">Contact</a>
+<a onclick="showSection('home')">Home</a>
+<a onclick="showSection('about')">About</a>
+<a onclick="showSection('concerts')">Concerts</a>
+<a onclick="showSection('media')">Media</a>
+<a onclick="showSection('contact')">Contact</a>
 </nav>
 
 <!-- HOME -->
 <section id="home" class="section active">
   <div class="hero">
-    <div class="hero-inner">
-      <div class="hero-box">
-        <div style="text-align:center;">
-          <div class="hero-title animate-hero">Ernest Syu</div>
-          <div class="hero-sub animate-hero" style="animation-delay:.2s;">Violinist | Solo · Chamber · Orchestral</div>
-          <div class="hero-bio animate-hero" style="animation-delay:.4s;">First prize winner, National Piano & Violin Competition; performed Tchaikovsky & Mozart concertos worldwide.</div>
-          <div class="read-more" onclick="scrollToAbout()">Read More</div>
-        </div>
+    <div class="hero-box">
+      <div class="hero-title">Ernest Syu</div>
+      <div class="hero-sub">Violinist | Solo · Chamber · Orchestral</div>
+      <div class="hero-bio">
+        First Prize Winner – National Piano & Violin Competition.<br>
+        Winner – YST Concerto Competition.<br>
+        Regular freelance violinist with Singapore Symphony Orchestra.
       </div>
+      <div class="read-more" onclick="showSection('about')">Read More</div>
     </div>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about" class="section">
-  <div class="container about">
-    <h1>About</h1>
+<div class="container">
+<h1>About</h1>
 
-    <div class="press">
-      <h2>Press / Reviews</h2>
-      <p>“...made Tchaikovsky’s Violin Concerto sound freshly minted, garnering the loudest cheers from the audience.” — Pianofortephilia, 2025</p>
-      <p>Featured coverage: The Straits Times (National Piano & Violin Competition Final Round).</p>
-    </div>
+<div class="press">
+<h2>Press / Reviews</h2>
+<p>“…made Tchaikovsky’s Violin Concerto sound freshly minted…” — Pianofortephilia, 2025</p>
+<p>Featured in The Straits Times – National Piano & Violin Competition Final.</p>
+</div>
 
-    <div class="bio">
-      <p>
-        Ernest Syu is a versatile concert violinist whose artistic presence spans solo, chamber, and orchestral stages.
-        His musicianship is defined by expressive depth, stylistic range, and a commitment to both individual voice and collaborative artistry.
-      </p>
+<div class="bio">
+<p>
+Ernest Syu is a versatile concert violinist active across solo, chamber and orchestral stages.
+</p>
+<p>
+He is currently pursuing a Bachelor of Music at Yong Siew Toh Conservatory of Music.
+He regularly freelances with the Singapore Symphony Orchestra.
+</p>
+<p>
+He performs on a 1726 Matteo Goffriller violin, generously loaned by the Rin Collection in Singapore.
+</p>
+</div>
 
-      <p>
-        He is currently pursuing a Bachelor of Music in Violin Performance at the Yong Siew Toh Conservatory of Music, National University of Singapore, where he studies with Professor Qian Zhou. Ernest regularly freelances with the Singapore Symphony Orchestra and has served in leadership roles in conservatory and chamber ensembles.
-      </p>
+<h3 class="repertoire-toggle" onclick="toggleRep(this)">Repertoire</h3>
+<div class="repertoire" id="rep">
+<ul>
+<li>Tchaikovsky – Violin Concerto</li>
+<li>Mozart – Violin Concerto No.4</li>
+<li>Mozart – String Quartet K.465</li>
+</ul>
+</div>
 
-      <p>
-        He performs on a 1726 Matteo Goffriller violin, generously loaned by the Rin Collection in Singapore.
-      </p>
-    </div>
-
-    <div style="margin-top:40px;">
-      <h2 class="repertoire-toggle" onclick="toggleRepertoire(this)">Repertoire</h2>
-      <div class="repertoire" id="repertoire">
-        <h3>Chamber Music</h3>
-        <ul>
-          <li>Mozart — String Quartet No.19, K.465 “Dissonance”</li>
-          <li>Haydn — String Quartet Op.33 No.2 “The Joke”</li>
-        </ul>
-
-        <h3 style="margin-top:24px;">Solo & Concertos</h3>
-        <ul>
-          <li>Tchaikovsky — Violin Concerto in D Major</li>
-          <li>Mozart — Violin Concerto No.4</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+</div>
 </section>
 
 <!-- CONCERTS -->
 <section id="concerts" class="section">
-  <div class="container">
-    <h1>Concerts</h1>
-    <div class="tabs">
-      <button class="tab-btn active" onclick="showConcert('upcoming', this)">Upcoming</button>
-      <button class="tab-btn" onclick="showConcert('past', this)">Past</button>
-    </div>
+<div class="container">
+<h1>Concerts</h1>
 
-    <div id="upcoming" class="concert-list">
-      <div class="concert-item">
-        <strong>June 2026</strong><br>Solo Recital — Singapore<br><span class="concert-type">Solo</span>
-      </div>
-    </div>
+<div class="tabs">
+<button class="tab-btn active" onclick="showConcert('upcoming',this)">Upcoming</button>
+<button class="tab-btn" onclick="showConcert('past',this)">Past</button>
+</div>
 
-    <div id="past" class="concert-list" style="display:none;">
-      <div class="concert-item">
-        <strong>November 2025</strong><br>Tchaikovsky Violin Concerto — National Piano & Violin Competition Final<br><span class="concert-type">Solo</span>
-      </div>
-    </div>
-  </div>
+<div id="upcoming">
+<p><strong>June 2026</strong> – Solo Recital, Singapore</p>
+</div>
+
+<div id="past" style="display:none">
+<p><strong>Nov 2025</strong> – Tchaikovsky Concerto Final Round</p>
+</div>
+
+</div>
 </section>
 
 <!-- MEDIA -->
 <section id="media" class="section">
-  <div class="container">
-    <h1>Media</h1>
+<div class="container">
+<h1>Media</h1>
 
-    <div class="video">
-      <h3>Tchaikovsky — Violin Concerto (Final Round)</h3>
-      <iframe src="https://www.youtube.com/embed/p92YuvO2wJ0?start=6016" allowfullscreen></iframe>
-    </div>
+<div class="video">
+<h3>Tchaikovsky Violin Concerto</h3>
+<iframe src="https://www.youtube.com/embed/p92YuvO2wJ0?start=6016" allowfullscreen></iframe>
+</div>
 
-    <div class="video">
-      <h3>J.S. Bach — Sonata No.3, BWV 1005</h3>
-      <iframe src="https://www.youtube.com/embed/5LrhNGogXBE" allowfullscreen></iframe>
-    </div>
-  </div>
+<div class="video">
+<h3>Bach BWV 1005</h3>
+<iframe src="https://www.youtube.com/embed/5LrhNGogXBE" allowfullscreen></iframe>
+</div>
+
+</div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact" class="section">
-  <div class="container contact">
-    <h1>Contact</h1>
-    <p>For concert bookings, press and enquiries:</p>
-    <p><a class="mailto" href="mailto:ernestsyu@gmail.com">ernestsyu@gmail.com</a></p>
-    <p style="margin-top:18px;color:rgba(200,200,200,0.9)">Press kit and full CV available on request.</p>
-  </div>
+<div class="container">
+<h1>Contact</h1>
+<p>For bookings and enquiries:</p>
+<p><a class="mailto" href="mailto:ernestsyu@gmail.com">ernestsyu@gmail.com</a></p>
+</div>
 </section>
 
 <script>
-  /* 單頁切換動畫 */
-  function showSection(id){
-    const sections=document.querySelectorAll('.section');
-    sections.forEach(s=>{s.classList.remove('active'); s.style.opacity=0;});
-    setTimeout(()=>{ document.getElementById(id).classList.add('active'); }, 50);
-    window.scrollTo(0,0);
-  }
-
-  /* Concert tabs */
-  function showConcert(name, btn){
-    document.getElementById('upcoming').style.display=(name==='upcoming')?'block':'none';
-    document.getElementById('past').style.display=(name==='past')?'block':'none';
-    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-  }
-
-  /* Repertoire toggle + / - */
-  function toggleRepertoire(el){
-    const rep = document.getElementById('repertoire');
-    if(rep.style.display==='block'){
-      rep.style.display='none';
-      el.classList.remove('open');
-    }else{
-      rep.style.display='block';
-      el.classList.add('open');
-    }
-  }
-
-  /* Read More */
-  function scrollToAbout(){
-    const aboutSection = document.getElementById('about');
-    showSection('about');
-    aboutSection.scrollIntoView({behavior:'smooth'});
-  }
-
-  /* 初始化 fragment hash */
-  window.addEventListener('DOMContentLoaded', () => {
-    const hash = location.hash.replace('#','');
-    const valid=['home','about','concerts','media','contact'];
-    if(valid.includes(hash)) showSection(hash); else showSection('home');
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=>{
+    s.classList.remove('active');
   });
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function toggleRep(el){
+  const rep=document.getElementById('rep');
+  if(rep.style.display==='block'){
+    rep.style.display='none';
+    el.classList.remove('open');
+  }else{
+    rep.style.display='block';
+    el.classList.add('open');
+  }
+}
+
+function showConcert(name,btn){
+  document.getElementById('upcoming').style.display=(name==='upcoming')?'block':'none';
+  document.getElementById('past').style.display=(name==='past')?'block':'none';
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
 </script>
+
 </body>
 </html>
