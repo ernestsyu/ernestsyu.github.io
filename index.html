@@ -256,10 +256,28 @@ section.active {
 
 <!-- CONTACT -->
 <section id="contact">
-    <div class="contact">
-        <p>For engagements and inquiries:</p>
-        <p><a href="mailto:ernestsyu@gmail.com">ernestsyu@gmail.com</a></p>
+
+    <div class="contact" style="max-width:600px;margin:auto;text-align:left;">
+
+        <h2 style="text-align:center;margin-bottom:60px;">Contact</h2>
+
+        <form action="https://formspree.io/f/mdaljeel" method="POST">
+
+            <label>Name</label>
+            <input type="text" name="name" required>
+
+            <label>Email</label>
+            <input type="email" name="email" required>
+
+            <label>Message</label>
+            <textarea name="message" rows="6" required></textarea>
+
+            <button type="submit">Send</button>
+
+        </form>
+
     </div>
+
 </section>
 
 <script>
