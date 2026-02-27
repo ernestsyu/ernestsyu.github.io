@@ -6,161 +6,208 @@
 <title>Ernest Syu</title>
 
 <style>
-body {
-    margin: 0;
+body{
+    margin:0;
     font-family: Helvetica, Arial, sans-serif;
-    background-color: black;
-    color: white;
-    overflow-x: hidden;
+    background:black;
+    color:white;
+    overflow-x:hidden;
 }
 
 /* Navigation */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: black;
-    padding: 25px 60px;
-    z-index: 1000;
-    text-align: right;
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:black;
+    padding:25px 60px;
+    z-index:1000;
+    text-align:right;
 }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 30px;
-    font-size: 14px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: opacity 0.3s ease;
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:30px;
+    font-size:13px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    transition:opacity .3s ease;
+    cursor:pointer;
 }
 
-nav a:hover {
-    opacity: 0.6;
+nav a:hover{
+    opacity:.6;
 }
 
 /* Hero */
-.hero {
-    height: 100vh;
-    width: 100%;
-    background: url('hero.jpg') center center / cover no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: relative;
+.hero{
+    height:100vh;
+    width:100%;
+    background:url('hero.jpg') center center / cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    position:relative;
 }
 
-.hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.35);
+.hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.35);
 }
 
-.hero-content {
-    position: relative;
-    z-index: 2;
+.hero-content{
+    position:relative;
+    z-index:2;
 }
 
-.hero h1 {
-    font-size: 4rem;
-    letter-spacing: 4px;
-    margin: 0;
+.hero h1{
+    font-size:4.5rem;
+    letter-spacing:6px;
+    margin:0;
 }
 
-.hero p {
-    font-size: 1.2rem;
-    margin-top: 15px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
+.hero p{
+    font-size:1rem;
+    letter-spacing:4px;
+    margin-top:15px;
+    text-transform:uppercase;
 }
 
 /* Sections */
-section {
-    display: none;
-    padding: 140px 20px 100px 20px;
-    max-width: 900px;
-    margin: auto;
-    animation: fadeIn 0.6s ease forwards;
+section{
+    display:none;
+    padding:160px 20px 120px 20px;
+    max-width:900px;
+    margin:auto;
+    animation:fade .5s ease forwards;
 }
 
-section.active {
-    display: block;
+section.active{
+    display:block;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px);}
-    to { opacity: 1; transform: translateY(0);}
+@keyframes fade{
+    from{opacity:0; transform:translateY(8px);}
+    to{opacity:1; transform:translateY(0);}
 }
 
 /* Press */
-.press-quote {
-    text-align: center;
-    margin-bottom: 100px;
+.press-quote{
+    text-align:center;
+    margin-bottom:120px;
 }
 
-.quote {
-    font-size: 1.8rem;
-    font-style: italic;
-    line-height: 1.6;
+.quote{
+    font-size:1.9rem;
+    font-style:italic;
+    line-height:1.6;
 }
 
-.quote-source {
-    margin-top: 15px;
-    font-size: 0.9rem;
-    opacity: 0.7;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.quote-source{
+    margin-top:18px;
+    font-size:.85rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    opacity:.7;
 }
 
 /* Bio */
-.bio p {
-    line-height: 1.8;
-    margin-bottom: 30px;
+.bio p{
+    line-height:1.9;
+    margin-bottom:32px;
+    font-size:1rem;
 }
 
-/* Repertoire Toggle */
-.repertoire-toggle {
-    margin-top: 60px;
-    cursor: pointer;
-    font-size: 14px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+/* Repertoire */
+.repertoire-toggle{
+    margin-top:70px;
+    cursor:pointer;
+    font-size:13px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
 }
 
-.repertoire-content {
-    display: none;
-    margin-top: 30px;
-    line-height: 1.8;
+.repertoire-content{
+    display:none;
+    margin-top:35px;
+    line-height:1.8;
 }
 
-/* Contact */
-.contact {
-    text-align: center;
-    font-size: 1rem;
+/* Media */
+#media p{
+    margin-bottom:40px;
 }
 
-.contact a {
-    color: white;
-    text-decoration: none;
+#media a{
+    color:white;
+    text-decoration:none;
+    border-bottom:1px solid rgba(255,255,255,.4);
+    padding-bottom:3px;
 }
 
-.contact a:hover {
-    opacity: 0.6;
+#media a:hover{
+    opacity:.7;
+}
+
+/* Contact Form */
+form{
+    display:flex;
+    flex-direction:column;
+}
+
+label{
+    font-size:12px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-top:25px;
+    margin-bottom:8px;
+}
+
+input, textarea{
+    background:transparent;
+    border:1px solid rgba(255,255,255,.3);
+    padding:14px;
+    color:white;
+    font-size:14px;
+}
+
+input:focus, textarea:focus{
+    outline:none;
+    border:1px solid white;
+}
+
+button{
+    margin-top:35px;
+    padding:14px;
+    background:white;
+    color:black;
+    border:none;
+    cursor:pointer;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    transition:.3s ease;
+}
+
+button:hover{
+    opacity:.8;
 }
 
 /* Responsive */
-@media (max-width:768px){
-    nav {
+@media(max-width:768px){
+    nav{
         padding:20px;
         text-align:center;
     }
-    nav a {
-        margin:0 10px;
+    nav a{
+        margin:0 12px;
     }
-    .hero h1 {
-        font-size:2.5rem;
+    .hero h1{
+        font-size:2.7rem;
+        letter-spacing:3px;
     }
 }
 </style>
@@ -169,136 +216,133 @@ section.active {
 <body>
 
 <nav>
-    <a onclick="showSection('home')">Home</a>
-    <a onclick="showSection('about')">About</a>
-    <a onclick="showSection('concerts')">Concerts</a>
-    <a onclick="showSection('media')">Media</a>
-    <a onclick="showSection('contact')">Contact</a>
+<a onclick="showSection('home')">Home</a>
+<a onclick="showSection('about')">About</a>
+<a onclick="showSection('concerts')">Concerts</a>
+<a onclick="showSection('media')">Media</a>
+<a onclick="showSection('contact')">Contact</a>
 </nav>
 
 <!-- HOME -->
 <section id="home" class="active">
-    <div class="hero">
-        <div class="hero-content">
-            <h1>ERNEST SYU</h1>
-            <p>Violinist</p>
-        </div>
-    </div>
+<div class="hero">
+<div class="hero-content">
+<h1>ERNEST SYU</h1>
+<p>Violinist</p>
+</div>
+</div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
 
-    <div class="press-quote">
-        <p class="quote">
-        “An assured and compelling performance, marked by expressive depth and confident command.”
-        </p>
-        <p class="quote-source">
-        — The Straits Times
-        </p>
+<div class="press-quote">
+<p class="quote">
+“An assured and compelling performance, marked by expressive depth and confident command.”
+</p>
+<p class="quote-source">— The Straits Times</p>
 
-        <p class="quote" style="margin-top:60px;">
-        “A performance of remarkable sincerity and musical maturity.”
-        </p>
-        <p class="quote-source">
-        — Pianofortephilia
-        </p>
-    </div>
+<p class="quote" style="margin-top:70px;">
+“A performance of remarkable sincerity and musical maturity.”
+</p>
+<p class="quote-source">— Pianofortephilia</p>
+</div>
 
-    <div class="bio">
-        <p>
-        Ernest Syu is a Taiwanese violinist known for his musical sincerity, stylistic versatility, and collaborative sensitivity. He is currently pursuing his Bachelor of Music degree at the Yong Siew Toh Conservatory of Music under Professor Qian Zhou.
-        </p>
+<div class="bio">
+<p>
+Ernest Syu is a Taiwanese violinist known for his musical sincerity, stylistic versatility, and collaborative sensitivity. He is currently pursuing his Bachelor of Music degree at the Yong Siew Toh Conservatory of Music under Professor Qian Zhou.
+</p>
 
-        <p>
-        He gained national recognition after winning First Prize at the National Piano and Violin Competition (Artist Category) in Singapore. In 2025, he was also named winner of the Yong Siew Toh Conservatory Concerto Competition. As a soloist, he has performed Tchaikovsky’s Violin Concerto, Mozart’s Violin Concerto No. 4, and Vivaldi’s Concerto for Four Violins with orchestra.
-        </p>
+<p>
+He gained national recognition after winning First Prize at the National Piano and Violin Competition (Artist Category) in Singapore. In 2025, he was also named winner of the Yong Siew Toh Conservatory Concerto Competition. As a soloist, he has performed Tchaikovsky’s Violin Concerto, Mozart’s Violin Concerto No. 4, and Vivaldi’s Concerto for Four Violins with orchestra.
+</p>
 
-        <p>
-        Beyond solo appearances, Ernest maintains an active presence in chamber music and orchestral performance. He previously served as Concertmaster of the Sounds Good Chamber Orchestra in Taipei and currently freelances regularly with the Singapore Symphony Orchestra.
-        </p>
+<p>
+Beyond solo appearances, Ernest maintains an active presence in chamber music and orchestral performance. He previously served as Concertmaster of the Sounds Good Chamber Orchestra in Taipei and currently freelances regularly with the Singapore Symphony Orchestra.
+</p>
 
-        <p>
-        He performs on a 1726 Matteo Goffriller violin, generously loaned by the Rin Collection in Singapore.
-        </p>
-    </div>
+<p>
+He performs on a 1726 Matteo Goffriller violin, generously loaned by the Rin Collection in Singapore.
+</p>
+</div>
 
-    <div class="repertoire-toggle" onclick="toggleRepertoire()">
-        Repertoire <span id="symbol">+</span>
-    </div>
+<div class="repertoire-toggle" onclick="toggleRepertoire()">
+Repertoire <span id="symbol">+</span>
+</div>
 
-    <div class="repertoire-content" id="repertoireContent">
-        <p><strong>Chamber Music Highlights:</strong><br>
-        Beethoven, Ravel, Shostakovich, Mozart, Chausson</p>
-    </div>
+<div class="repertoire-content" id="repertoireContent">
+<p><strong>Chamber Music Highlights:</strong><br>
+Beethoven, Ravel, Shostakovich, Mozart, Chausson
+</p>
+</div>
 
 </section>
 
 <!-- CONCERTS -->
 <section id="concerts">
-    <h2>Concerts</h2>
-    <p>Upcoming performances will be announced.</p>
+<h2>Concerts</h2>
+<p>Upcoming performances will be announced.</p>
 </section>
 
 <!-- MEDIA -->
 <section id="media">
-    <h2>Media</h2>
-    <p>
-    Tchaikovsky Violin Concerto (Final Round)<br>
-    <a href="https://www.youtube.com/live/p92YuvO2wJ0?si=ngWIAOd7PJRi-3z4&t=6016" target="_blank">Watch on YouTube</a>
-    </p>
+<h2>Media</h2>
 
-    <p style="margin-top:40px;">
-    Bach: Violin Sonata No. 3 BWV 1005<br>
-    <a href="https://youtu.be/5LrhNGogXBE?si=fjWXh7fzKjbfgdB1" target="_blank">Watch on YouTube</a>
-    </p>
+<p>
+Tchaikovsky Violin Concerto (Final Round)<br>
+<a href="https://www.youtube.com/live/p92YuvO2wJ0?si=ngWIAOd7PJRi-3z4&t=6016" target="_blank">
+Watch on YouTube
+</a>
+</p>
+
+<p>
+Bach: Violin Sonata No. 3 BWV 1005<br>
+<a href="https://youtu.be/5LrhNGogXBE?si=fjWXh7fzKjbfgdB1" target="_blank">
+Watch on YouTube
+</a>
+</p>
+
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
+<h2 style="text-align:center;margin-bottom:60px;">Contact</h2>
 
-    <div class="contact" style="max-width:600px;margin:auto;text-align:left;">
+<form action="https://formspree.io/f/mdaljeel" method="POST">
+<label>Name</label>
+<input type="text" name="name" required>
 
-        <h2 style="text-align:center;margin-bottom:60px;">Contact</h2>
+<label>Email</label>
+<input type="email" name="email" required>
 
-        <form action="https://formspree.io/f/mdaljeel" method="POST">
+<label>Message</label>
+<textarea name="message" rows="6" required></textarea>
 
-            <label>Name</label>
-            <input type="text" name="name" required>
-
-            <label>Email</label>
-            <input type="email" name="email" required>
-
-            <label>Message</label>
-            <textarea name="message" rows="6" required></textarea>
-
-            <button type="submit">Send</button>
-
-        </form>
-
-    </div>
+<button type="submit">Send</button>
+</form>
 
 </section>
 
 <script>
 function showSection(id){
-    document.querySelectorAll("section").forEach(sec=>{
-        sec.classList.remove("active");
-    });
-    document.getElementById(id).classList.add("active");
-    window.scrollTo(0,0);
+document.querySelectorAll("section").forEach(sec=>{
+sec.classList.remove("active");
+});
+document.getElementById(id).classList.add("active");
+window.scrollTo(0,0);
 }
 
 function toggleRepertoire(){
-    const content = document.getElementById("repertoireContent");
-    const symbol = document.getElementById("symbol");
-    if(content.style.display === "block"){
-        content.style.display = "none";
-        symbol.innerText = "+";
-    } else {
-        content.style.display = "block";
-        symbol.innerText = "-";
-    }
+const content=document.getElementById("repertoireContent");
+const symbol=document.getElementById("symbol");
+
+if(content.style.display==="block"){
+content.style.display="none";
+symbol.innerText="+";
+}else{
+content.style.display="block";
+symbol.innerText="-";
+}
 }
 </script>
 
